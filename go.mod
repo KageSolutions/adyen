@@ -1,3 +1,3 @@
-module github.com/rafaeltorres324/adyen@v0.0.1
+module adyen
 
 go 1.16
