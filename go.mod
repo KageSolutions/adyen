@@ -1,1 +1,1 @@
-module Adyen v0.0.2
+module github.com/rafaeltorres324/adyen
