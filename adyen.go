@@ -82,6 +82,24 @@ func NewAdYen(publicKey string) *Adyen {
 	return yen
 }
 
+func NewAdYen2(publicKey string) *Adyen {
+	yen := &Adyen{}
+	yen.rsa = NewRsa()
+	yen.prefix = "adyenjs_"
+	yen.version = "0_1_21"
+	yen.aesKey = make([]byte, 32)
+	yen._tagSize = 8
+	yen._nonceSize = 12
+
+	//如果密钥错误直接推出
+	err := yen.rsa.SetPublicKey(publicKey, 65537)
+	if err != nil {
+		panic(err)
+	}
+	yen.init()
+	return yen
+}
+
 func (yen *Adyen) marshal(data interface{}) []byte {
 	if reflect.TypeOf(data).String() == "string" {
 		return []byte(data.(string))
